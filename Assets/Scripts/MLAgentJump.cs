@@ -5,56 +5,74 @@ using Unity.MLAgents.Actuators;
 
 public class JumpingAgent : Agent
 {
-    public float jumpForce = 10f;
-    public float raycastDistance = 2f;
-    public LayerMask obstacleLayer;
-
-    private Rigidbody rb;
-
-    void Start()
+    public float force = 15f;
+    public Transform reset = null;
+    //public TextMesh score = null;
+    public GameObject thrust = null;
+    private Rigidbody rb = null;
+    private float points = 0;
+    
+    public override void Initialize()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = this.GetComponent<Rigidbody>();
+        ResetMyAgent();
     }
+    public override void OnActionReceived(ActionBuffers actionBuffers)
+    {
+        // Assuming the first action is the one you're interested in
+        float action = actionBuffers.ContinuousActions[0];
 
+        if (action == 1)
+        {
+            UpForce();
+            thrust.SetActive(true);
+        }
+        else
+        {
+            thrust.SetActive(false);
+        }
+    }
     public override void OnEpisodeBegin()
     {
-        // Reset agent's position and velocity
-        rb.velocity = Vector3.zero;
-        transform.localPosition = new Vector3(0, 1, 0); // Adjust starting position as needed
+        ResetMyAgent();
     }
-
-    public override void CollectObservations(VectorSensor sensor)
+/*    public override void Heuristic(float[] actionsOut)
     {
-        // No observations needed in this basic example
-    }
-
-    public override void OnActionReceived(ActionBuffers actions)
+        actionsOut[0] = 0;
+        if (Input.GetKey(KeyCode.UpArrow) == true)
+            actionsOut[0] = 1;
+    }*/
+    private void OnCollisionStay(Collision collision)
     {
-        // Apply forward force based on the input
-        float forwardForce = Mathf.Clamp(actions.ContinuousActions[0], -1f, 1f);
-        rb.AddForce(transform.forward * forwardForce * 10f);
-
-        // If an obstacle is detected in front, jump
-        if (Physics.Raycast(transform.position, transform.forward, raycastDistance, obstacleLayer))
+        if (collision.gameObject.CompareTag("obstacle") == true)
         {
-            Jump();
-        }
-
-        // Penalty for time steps to encourage the agent to complete the task quickly
-        AddReward(-0.05f);
-    }
-
-    void Jump()
-    {
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Finish")) // Assuming a "Finish" tag for the goal
-        {
-            SetReward(1f);
+            AddReward(-1.0f);          
+            Destroy(collision.gameObject);
             EndEpisode();
         }
+        if (collision.gameObject.CompareTag("walltop") == true)
+        {
+            AddReward(-0.9f);
+            EndEpisode();
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("wallreward") == true)
+        {
+            AddReward(0.1f);
+            points++;
+            //score.text = points.ToString();
+        }     
+    }
+    private void UpForce()
+    {
+        Debug.Log("Jumping with force: " + force);
+        rb.AddForce(Vector3.up * force, ForceMode.Acceleration);
+    }
+
+    private void ResetMyAgent()
+    {
+        this.transform.position = new Vector3(reset.position.x, reset.position.y, reset.position.z);
     }
 }

@@ -7,12 +7,6 @@ public class Obstacle : MonoBehaviour
     private void Update()
     {
         this.transform.Translate(Vector3.back * Movespeed * Time.deltaTime);
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("wallend") == true)
-        {
-            Destroy(this.gameObject);
-        }            
+        if(this.transform.position.z < -10) Destroy(this.gameObject);
     }
 }

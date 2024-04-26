@@ -1,3 +1,5 @@
+![Image Description](Images/JumperPrefab.png)
+
 # Jumper ML-Agents oefening
 ## Inleiding
 
@@ -168,3 +170,7 @@ public float jumpMultiplier = 1.5f;
         }
     }
 ```
+
+4. Zet dan al de parameters op de juiste waardes (Niet die van ons want de jumper doet niet wat hij moet doen en lijkt behoorlijk dom)
+5. begin hierna te testen met het volgende commando: mlagents-learn config/CubeAgent.yaml --run-id=Main
+6. Hierna 

@@ -1,5 +1,3 @@
-![Image Description](Images/JumperPrefab.png)
-
 # Jumper ML-Agents oefening
 ## Inleiding
 
@@ -10,7 +8,8 @@ Om dit project na te maken volg je de volgende stappen:
 1. Maak een jumper omgeving waar je een platform hebt met daar op een agent. aan de ander kant van het platform zet je een empty game object, hier gaan de obstacels uit spawnen.
 ![Image Description](Images/JumperPrefab.png)
 3. Hierna gaan we het obstacel prefab maken. Deze bevat een obstacel en een extra rechthoek er achter dat als reward dient.
-4. Zorg dan dat je de volgende code in de juiste obejcten steekt:
+![Image Description](Images/JumperObstaclePrefab.png)
+5. Zorg dan dat je de volgende code in de juiste obejcten steekt:
 - Agent:
 ```cs
 public float jumpMultiplier = 1.5f;
@@ -174,4 +173,7 @@ public float jumpMultiplier = 1.5f;
 
 4. Zet dan al de parameters op de juiste waardes (Niet die van ons want de jumper doet niet wat hij moet doen en lijkt behoorlijk dom)
 5. begin hierna te testen met het volgende commando: mlagents-learn config/CubeAgent.yaml --run-id=Main
-6. Hierna 
+6. Wanneer dit klaar is kun je met dit commando: "tensorboard --logdir results" de resultaten zien in een grafiek. Hieronder is een voorbeeld van onze agent. Dit zou je niet mogen krijgen want deze agent is niet zo slim.
+![Image Description](Images/Grafiek.png)
+
+(Wij kregen het niet voor elkaar de agent correct jumpende te krijgen. We hebben heel wat verschillende code geprobeerd en niks bleek te werken. We hebben uiteindelijk de agent laten trainen met ongeveer 1mil aan steps. Dit loste het probleem ook niet op en dus bleef de agent "dom".)

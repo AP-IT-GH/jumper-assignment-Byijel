@@ -8,7 +8,7 @@ Om dit project na te maken volg je de volgende stappen:
 1. Maak een jumper omgeving waar je een platform hebt met daar op een agent. aan de ander kant van het platform zet je een empty game object, hier gaan de obstacels uit spawnen.
 2. Hierna gaan we het obstacel prefab maken. Deze bevat een obstacel en een extra rechthoek er achter dat als reward dient.
 3. Zorg dan dat je de volgende code in de juiste obejcten steekt:
-        -Agent:
+- Agent:
 ```cs
 public float jumpMultiplier = 1.5f;
     public Transform reset = null;
@@ -91,8 +91,7 @@ public float jumpMultiplier = 1.5f;
         }
     }
 ```
-
-    -Spawner:
+- Spawner:
 ```cs
     public GameObject prefab = null;
     public Transform spawn = null;
@@ -124,7 +123,7 @@ public float jumpMultiplier = 1.5f;
         }
     }
 ```
-    -obstacle:
+- obstacle:
 ```cs
     public float minMoveSpeed = 4.0f;
     public float maxMoveSpeed = 6.0f;
@@ -169,4 +168,3 @@ public float jumpMultiplier = 1.5f;
         }
     }
 ```
-

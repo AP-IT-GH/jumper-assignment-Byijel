@@ -2,8 +2,8 @@
 
 public class Obstacle : MonoBehaviour
 {
-    public float minMoveSpeed = 2.0f;
-    public float maxMoveSpeed = 5.0f;
+    public float minMoveSpeed = 4.0f;
+    public float maxMoveSpeed = 6.0f;
     private float moveSpeed;
     private Vector3 initialPosition;
 

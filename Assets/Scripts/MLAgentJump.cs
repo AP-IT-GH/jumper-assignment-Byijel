@@ -5,7 +5,7 @@ using Unity.MLAgents.Actuators;
 
 public class JumpingAgentD : Agent
 {
-    public float jumpMultiplier = 0.8f;
+    public float jumpMultiplier = 1.5f;
     public Transform reset = null;
     private Rigidbody rb = null;
     public Transform obstacle = null;
@@ -39,14 +39,6 @@ public class JumpingAgentD : Agent
             rigidbody.velocity = velocity;
             AddReward(-1f);
         }
-
-
-        /*if (transform.position.y < 0)
-        {
-            // Death
-            AddReward(-1f);
-            EndEpisode();
-        }*/
     }
 
     private void ResetMyAgent()

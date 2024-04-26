@@ -6,7 +6,7 @@ In de ML-Agent 'Jumper' uitdaging wordt een kubus uitgedaagd om over muren (balk
 Om dit project na te maken volg je de volgende stappen:
 
 1. Maak een jumper omgeving waar je een platform hebt met daar op een agent. aan de ander kant van het platform zet je een empty game object, hier gaan de obstacels uit spawnen.
-    ![alt text](.Images/JumperPrefab)
+    ![setup](./Images/JumperPrefab)
 2. Hierna gaan we het obstacel prefab maken. Deze bevat een obstacel en een extra rechthoek er achter dat als reward dient.
 
 
